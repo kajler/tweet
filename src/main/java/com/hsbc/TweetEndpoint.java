@@ -1,6 +1,6 @@
 package com.hsbc;
 
-import com.hsbc.com.hsbc.entites.Tweet;
+import com.hsbc.entites.Tweet;
 import com.hsbc.exception.TweeterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 /**
  * Created by mkilar on 30.08.2017.

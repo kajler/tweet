@@ -1,6 +1,6 @@
 package com.hsbc;
 
-import com.hsbc.com.hsbc.entites.Tweet;
+import com.hsbc.entites.Tweet;
 import com.hsbc.exception.TweeterException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

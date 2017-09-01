@@ -1,4 +1,4 @@
-package com.hsbc.com.hsbc.entites;
+package com.hsbc.entites;
 
 import java.time.LocalDateTime;
 
