@@ -1,19 +1,23 @@
 package com.hsbc.entites;
 
-import java.time.LocalDateTime;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by mkilar on 29.08.2017.
  */
-public class Tweet {
+@XmlRootElement(name = "tweet")
+public class Tweet implements Serializable {
 
     private String message;
-    private LocalDateTime creationTime;
+    private Calendar creationTime;
     private String author;
 
-    public Tweet(String author, String message) {
+    public Tweet(String author, String message, Calendar creationTime) {
         this.author = author;
         this.message = message;
+        this.creationTime = creationTime;
     }
 
     public Tweet() {}
@@ -26,11 +30,11 @@ public class Tweet {
         this.message = message;
     }
 
-    public LocalDateTime getCreationTime() {
+    public Calendar getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(LocalDateTime creationTime) {
+    public void setCreationTime(Calendar creationTime) {
         this.creationTime = creationTime;
     }
 

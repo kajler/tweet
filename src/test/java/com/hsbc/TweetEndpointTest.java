@@ -1,6 +1,6 @@
 package com.hsbc;
 
-import com.hsbc.com.hsbc.entites.Tweet;
+import com.hsbc.entites.Tweet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,9 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import static com.hsbc.TweetBuilder.buildTweetsOfUser;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -19,8 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {TweetEndpoint.class, TweetController.class})
-public class TweetEndpointIT {
+@SpringBootTest(classes = {TweetEndpoint.class, TweeterController.class})
+public class TweetEndpointTest {
 
     @Autowired
     private TweetEndpoint tweetEndpoint;
@@ -70,23 +69,15 @@ public class TweetEndpointIT {
         tweetEndpoint.signUp("me",user1);
         tweetEndpoint.signUp("me",user2);
 
-        //take same time to process
-      //  Thread.sleep(1000);
-
         List<Tweet> tweetList = tweetEndpoint.getMyWall("me");
 
          assertThat(tweetList.size()).isEqualTo(20);
 
         for(int i=1;i<tweetList.size();i++){
-            assertThat(tweetList.get(i-1).getCreationTime()).isBeforeOrEqualTo(tweetList.get(i).getCreationTime());
+            assertThat(tweetList.get(i - 1).getCreationTime()).isLessThanOrEqualTo(tweetList.get(i).getCreationTime());
         }
 
     }
 
-    private List<Tweet> buildTweetsOfUser(String user) {
-        return Stream
-                .generate(() -> TweetBuilder.getInstance().randomTweet().withAuthor(user).build())
-                .limit(10).collect(Collectors.toList());
-    }
 
 }

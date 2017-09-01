@@ -1,24 +1,14 @@
 package com.hsbc;
 
-import com.hsbc.com.hsbc.entites.Tweet;
+import com.hsbc.entites.Tweet;
 import com.hsbc.exception.TweeterException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.mockito.Matchers.anyList;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 /**
@@ -26,7 +16,7 @@ import static org.mockito.Mockito.when;
  */
 public class TweetControllerNoMocksTest {
 
-    private TweetController tweetController = new TweetController();
+    private TweeterController tweetController = new TweeterController();
 
     @Rule
     public final ExpectedException exception = ExpectedException.none();

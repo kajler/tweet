@@ -1,6 +1,6 @@
 package com.hsbc;
 
-import com.hsbc.com.hsbc.entites.Tweet;
+import com.hsbc.entites.Tweet;
 import com.hsbc.exception.TweeterException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 public class TweetControllerTest {
 
     @InjectMocks
-    private TweetController tweetController = new TweetController();
+    private TweeterController tweetController = new TweeterController();
 
     @Mock
     private Map<String, List<Tweet>> tweets;

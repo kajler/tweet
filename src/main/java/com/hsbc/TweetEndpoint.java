@@ -3,8 +3,7 @@ package com.hsbc;
 import com.hsbc.entites.Tweet;
 import com.hsbc.exception.TweeterException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -21,15 +20,16 @@ public class TweetEndpoint {
     private static Logger logger = Logger.getLogger(TweetEndpoint.class.getName());
 
     @Autowired
-    private TweetController tweetController;
+    private TweeterController tweetController;
 
     /**
      * Post a tweet. If user doesn't exists than it is created
      * @param tweet tweet to be persisted
      * @return persisted tweet with updated date
      */
-    @RequestMapping(method=POST)
-    public Tweet postTweet(Tweet tweet){
+    @RequestMapping(value = "/tweet", method = POST)
+    @ResponseBody
+    public Tweet postTweet(@RequestBody Tweet tweet) {
         try {
             tweetController.postTweet(tweet);
             return tweet;
@@ -44,8 +44,9 @@ public class TweetEndpoint {
      * @param user of which tweets must be returned
      * @return list of tweets
      */
-    @RequestMapping(method=GET)
-    public List<Tweet> getTweetsOfUser(String user){
+    @RequestMapping(value = "/tweets/{user}", method = GET)
+    @ResponseBody
+    public List<Tweet> getTweetsOfUser(@PathVariable("user") String user) {
         return tweetController.getTweetsOfUser(user);
     }
 
@@ -54,8 +55,9 @@ public class TweetEndpoint {
      * @param user login of user which is following other users
      * @return list of all tweets of follwed user from the newest to the oldest
      */
-    @RequestMapping(method=GET)
-    public List<Tweet> getMyWall(String user){
+    @RequestMapping(value = "/wall/{user}", method = GET)
+    @ResponseBody
+    public List<Tweet> getMyWall(@PathVariable("user") String user) {
         return tweetController.getMyWall(user);
     }
 
@@ -66,8 +68,8 @@ public class TweetEndpoint {
      * @param followedUser user which is going to be followed ( user must exits before)
      * @return list of tweets
      */
-    @RequestMapping(method=PUT)
-    public String signUp(String followingUser, String followedUser){
+    @RequestMapping(value = "/signup", method = PUT)
+    public String signUp(@RequestParam("following") String followingUser, @RequestParam("followed") String followedUser) {
         try {
             return tweetController.signUp(followingUser,followedUser);
         } catch (TweeterException e) {

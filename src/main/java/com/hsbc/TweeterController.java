@@ -5,7 +5,6 @@ import com.hsbc.exception.TweeterException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,7 +14,7 @@ import static java.util.stream.Collectors.toList;
  * Created by mkilar on 29.08.2017.
  */
 @Component
-public class TweetController {
+public class TweeterController {
 
     private Map<String, List<Tweet>> tweets = new ConcurrentHashMap<>();
     private Map<String, List<String>> followups = new ConcurrentHashMap<>();
@@ -35,7 +34,7 @@ public class TweetController {
             tweets.put(author, tweetList);
             followups.put(author, new ArrayList<>());
         }
-        tweet.setCreationTime(LocalDateTime.now());
+        tweet.setCreationTime(Calendar.getInstance());
         tweetList.add(FIRST_POSITION, tweet);
 
     }
@@ -85,7 +84,7 @@ public class TweetController {
             throw new TweeterException("Author can't be empty");
         }
 
-        if (tweet.getMessage().length() > 160){
+        if (tweet.getMessage().length() > 140) {
             throw new TweeterException("To long message");
         }
 
