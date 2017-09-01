@@ -3,7 +3,6 @@ package com.hsbc;
 import com.hsbc.com.hsbc.entites.Tweet;
 import com.hsbc.exception.TweeterException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +26,7 @@ public class TweetEndpoint {
     private TweetController tweetController;
 
     /**
-     * Post a tweet. If user doesn't exsists than it is created
+     * Post a tweet. If user doesn't exists than it is created
      * @param tweet tweet to be persisted
      * @return persisted tweet with updated date
      */
@@ -64,10 +63,10 @@ public class TweetEndpoint {
 
 
     /**
-     * Singup
+     * Singup of tweets
      * @param followingUser user which is going to follow ( can be new user )
      * @param followedUser user which is going to be followed ( user must exits before)
-     * @return
+     * @return list of tweets
      */
     @RequestMapping(method=PUT)
     public String signUp(String followingUser, String followedUser){
